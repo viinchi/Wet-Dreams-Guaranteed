@@ -16,31 +16,39 @@ Our unique system combines state-of-the-art ultrasonic sensors and a pressurized
 
 ## Detailed Component Breakdown
 
+![](mbed.jpg)
 ### mBed LPC1768 (Controller)
 Serves as the brain of our system, executing the software to control other components through its I/O ports. [More info](#).
 
+![](Voltage Regulator.jpg)
 ### HiLetGo LM317 Voltage Regulators
 These maintain stable voltage levels for the system, ensuring consistent performance and protecting the circuitry. [More info](#).
 
+![](ultrasonic sensor.jpg)
 ### Ultrasonic Distance Sensor HC-SR04
 Detects the distance to the nearest object, critical in mapping the sleeper's position for targeted water delivery. [More info](#).
 
+![](Servo Motor.jpg)
 ### DEVMO MG995 Continuous Servo Motors
 Provide the mechanical actuation needed to adjust the water nozzle's aim with precision. [More info](#).
 
+![](Water Pump.jpg)
 ### GikFun Mini DC 6V-12V Water Diaphragm Pump
 Pumps the water through the system, enabling the ejection mechanism to work effectively. [More info](#).
 
+![](Relay Module.jpg)
 ### JBTek 4 Channel DC 5V Relay Module
 Allows for controlling high power devices, such as the water pump, with low voltage signals from the controller. [More info](#).
 
+![](pushbuttons.jpg)
 ### SPST Momentary Pushbutton Switches
 Used for user input, allowing for manual control over alarm settings.
 
+![](uLCD.jpg)
 ### uLCD-144-G2 LCD Screen
 Displays the system's status and provides an interface for user interaction.
 
-![Final Project Schematic](/path-to-image/FinalProjectSchematic.png)
+![Final Project Schematic](FinalProjectSchematic.png)
 
 For the links marked with [#], please replace with the actual URLs where more information about the parts can be found. Ensure you provide the correct link references to detailed product pages or datasheets where readers can get more information about each component.
 
