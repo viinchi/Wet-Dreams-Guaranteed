@@ -63,7 +63,7 @@ Used for user input, allowing for manual control over alarm settings. [More info
 
 ![](uLCD.png)
 ### uLCD-144-G2 LCD Screen
-Displays the system's status and provides an interface for user interaction. [More info]([https://www.sparkfun.com/products/15569](https://os.mbed.com/users/4180_1/notebook/ulcd-144-g2-128-by-128-color-lcd/)).
+Displays the system's status and provides an interface for user interaction. [More info](https://os.mbed.com/users/4180_1/notebook/ulcd-144-g2-128-by-128-color-lcd/).
 
 
 
