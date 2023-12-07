@@ -19,7 +19,7 @@ Our unique system combines state-of-the-art ultrasonic sensors and a pressurized
 
 ## Detailed Component Breakdown
 
-![](mbed.jpg)
+![](mbed2.png)
 ### mBed LPC1768 (Controller)
 Serves as the brain of our system, executing the software to control other components through its I/O ports. [More info](https://os.mbed.com/platforms/mbed-LPC1768/).
 
