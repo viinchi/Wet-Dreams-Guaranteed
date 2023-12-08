@@ -7,6 +7,7 @@
 ## Project Overview
 
 Experience an innovative wake-up solution designed to ensure you start your day with a splash. This autonomous alarm clock utilizes advanced sensors and a pressurized water system to locate sleepers and deliver a targeted wake-up call.
+[Watch our project demo](https://www.youtube.com/watch?v=fC7QabEXuDo).
 
 ## System Overview
 
@@ -328,13 +329,12 @@ int main() {
 }
 ```
 
-[Watch our project demo](https://www.youtube.com/watch?v=fC7QabEXuDo).
 
 ## Conclusion and Future Work
 
 We believe our system revolutionizes the morning routine. With potential expansions and user feedback, the possibilities are endless.
 However, that does not mean we do not see the need for a large amount of improvements. One would be using a lot higher quality printer to make all the parts and avoid all the extra fabrication we had to do due to the time crunch we were under. Printing took up 4-5 days which is where we lost a lot of time but we were able to make it work. If anything a possible redesign of how the X and Y axis rails could save a lot of time if unable to access a high quality printer that doesn't warp parts. 
-Better fitting and hoses can be used but if using what we used ourselves we still got the results we wanted that can be seen through the dmeo video. 
+Better fitting and hoses can be used but if using what we used ourselves we still got the results we wanted that can be seen through the demo video. 
 
 ## Hardware improvements for future
 Due to resolution quality of 3D printer a lot of pieces did not come out perfect. Initially in the design the linear rails are T-slot driven which were extremely warped post 3-day print.​
