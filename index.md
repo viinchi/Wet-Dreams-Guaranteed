@@ -333,6 +333,27 @@ int main() {
 ## Conclusion and Future Work
 
 We believe our system revolutionizes the morning routine. With potential expansions and user feedback, the possibilities are endless.
+However, that does not mean we do not see the need for a large amount of improvements. One would be using a lot higher quality printer to make all the parts and avoid all the extra fabrication we had to do due to the time crunch we were under. Printing took up 4-5 days which is where we lost a lot of time but we were able to make it work. If anything a possible redesign of how the X and Y axis rails could save a lot of time if unable to access a high quality printer that doesn't warp parts. 
+Better fitting and hoses can be used but if using what we used ourselves we still got the results we wanted that can be seen through the dmeo video. 
+
+## Hardware improvements for future
+Due to resolution quality of 3D printer a lot of pieces did not come out perfect. Initially in the design the linear rails are T-slot driven which were extremely warped post 3-day print.​
+
+Another issue that arose in terms of hardware was the need for a larger LCD display as the screen to body ratio was extremely large.​
+
+An addition of pushbuttons can further this project to have more functionality for a better user experience.​
+
+Swap out small pump for air compressor? :)
+
+## Software Improvements for Future
+Currently the software does not have a way to change the current time due to time constraints and lack of pushbuttons. ​
+
+The LCD (due to not being programmed in a way to utilize threads) stops updating the time when scanning the area which can also be improved.​
+
+The scanning routing when populating the matrix can be changed to be continuous instead of repeatedly stopping and starting to save time.​
+
+Need to swap out ultrasonic sensor for something more precise as the sensor is not as accurate as the internet says per our tests on a variety of objects.
+
 
 For a full list of components, please refer to the [Parts List](Parts_List.pdf).
 
