@@ -70,7 +70,7 @@ Displays the system's status and provides an interface for user interaction. [Mo
 ![Final Project Schematic](FinalProjectSchematic.png)
 
 
-[Watch our project demo](insert youtube link here).
+[Watch our project demo](https://www.youtube.com/watch?v=fC7QabEXuDo).
 
 
 ## Implementation
