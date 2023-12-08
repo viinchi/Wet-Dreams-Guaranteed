@@ -70,8 +70,6 @@ Displays the system's status and provides an interface for user interaction. [Mo
 ![Final Project Schematic](FinalProjectSchematic.png)
 
 
-[Watch our project demo](https://www.youtube.com/watch?v=fC7QabEXuDo).
-
 
 ## Implementation
 
@@ -106,6 +104,8 @@ The pump, ultrasonic sensor, water tank (old candle case), and relay board were 
 ![](SoftwareUML.png)
 ##  Step 6: Software
 The program follows a pretty simple but tedious format in which in main() after a large instantiation of objects there is a constant displayTime() and checkAlarm(). Both of these have conditionals that would activate the alarm routine in which a grid matrix with a predefined resolution is created and populated with ultrasonic values at each x and y value essentially "mapping" out the entire area with distance values. If we follow the assumption that the sleeper is the closest to the sensor (and does not have the fluffiest pillow known to man) then the routine of finding the lowest value and sending the pipe to that x,y coordinate works perfectly! As also shown through the demo.
+
+[Watch our project demo](https://www.youtube.com/watch?v=fC7QabEXuDo).
 
 ## Conclusion and Future Work
 
