@@ -77,18 +77,18 @@ Displays the system's status and provides an interface for user interaction. [Mo
 
 Step-by-step details on how we brought this project to life, including coding practices, circuit design, and assembly instructions.
 
-![](initial_frame.jpg)
+![](initial_frame.JPG)
 ##  Step 1: Framework
 We had spare 6mm acrylic on hand that can be acquired through local hardware stores such as Ace and Home Depot, with a large piece we were able to make the base, roof, and front panel of the alarm clock using clear cast acrylic and a few U-bolts.
 
-![](initialElectronics.jpg)
+![](initialElectronics.JPG)
 ##  Step 2: Electronics
 From there we mounted the voltage reduction circuit to power the entire project externally which caused a few issues when wanting to use the relay. We got weird behavior where if we did not power the LPC1768 with the 5V USB supply the entired mBed would freeze up and not post our initial GUI for the display. We decided to just use a 5V LM317 to power the peripherals of the LCD and Ultrasonic and also made a 6V LM317 to supply the relay board, servos, and diaphram pump mentioned earlier.
 
 The LCD was mounted using velcro tape in order to troubleshoot more readily around the frame. Along with the pushbuttons being placed on the same panel. These pushbuttons use the mBed's 3.3 volt output to configure logic active high which was set internally in the program.
 Following the schematic the servos, ultrasonic, and LCD can be wired using appropriate extensions whenever needed.
 
-![](Assembly.jpg)
+![](Assembly.JPG)
 ##  Step 3: Linear Rail System
 For moving in the X and Y axis direction we decided to model and 3D print a linear rail system using our own carriage design. This deisgn utilizes two servos that would mount directly to the carriage and allow the utlrasonic sensor to move freely along a grid that will be configured within the software.
 
