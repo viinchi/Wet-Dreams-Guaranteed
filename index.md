@@ -99,6 +99,10 @@ SUPER IMPORTANT: Use a high quality printer when printing these parts as we ran 
 When placing the rails and carriages a lot of holes need to be drilled into the frame. We used a 5.5mm drill bit and 5mm bolts to piece everything together while using 3 inch long #10-32 to hold the carriage together. The servos were mounted to the carriages afterwards. IMPORTANT: Tighten the servos only with the driving gears compressed onto the teeth to allow for smooth operation when moving the linear rails in X and Y direction.
 It should be noted that the acrylic mount that is shown in the figure is due to the entire top piece of our carriage snapping off. We were able to get around this by laser cutting a new servo mount panel and directly bolting it into the excess extrusion that did not snap off. Also to note is the T-rail is completely mauled. That is because of the terrible printing quality on the linear rails and the T-slot itself. We abandoned the design and decided to just use the pressure from the drive gear to hold the linear rail down which made it quite wobbly, but functional.
 
+![](ultrasonicMount.JPG)
+##  Step 5: Extra Parts Attachment to Frame
+The pump, ultrasonic sensor, water tank (old candle case), and relay board were all bolted on or adhered on to secure a firm and functional product. Fuel line would have worked perfect for the diaphragm pump but we only had oversized pneumatic hose on hand so we used that with some hose clamps and were able to yield a pretty could result although not a perfect seal. This will drastically impact the intensity at which the water can shoot out so it is definitely important to keep a good seal and get a proper size. For the ultrasonic sensor we drilled through-holes on the end of the Y-axis plate which turned out absolutely perfect and fully functional which then led us straight into coding after following the schematic.
+
 
 ## Conclusion and Future Work
 
