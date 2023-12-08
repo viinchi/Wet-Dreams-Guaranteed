@@ -70,6 +70,9 @@ Displays the system's status and provides an interface for user interaction. [Mo
 ![Final Project Schematic](FinalProjectSchematic.png)
 
 
+[Watch our project demo](insert youtube link here).
+
+
 ## Implementation
 
 Step-by-step details on how we brought this project to life, including coding practices, circuit design, and assembly instructions.
