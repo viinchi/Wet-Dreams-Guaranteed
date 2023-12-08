@@ -103,7 +103,7 @@ It should be noted that the acrylic mount that is shown in the figure is due to 
 ##  Step 5: Extra Parts Attachment to Frame
 The pump, ultrasonic sensor, water tank (old candle case), and relay board were all bolted on or adhered on to secure a firm and functional product. Fuel line would have worked perfect for the diaphragm pump but we only had oversized pneumatic hose on hand so we used that with some hose clamps and were able to yield a pretty could result although not a perfect seal. This will drastically impact the intensity at which the water can shoot out so it is definitely important to keep a good seal and get a proper size. For the ultrasonic sensor we drilled through-holes on the end of the Y-axis plate which turned out absolutely perfect and fully functional which then led us straight into coding after following the schematic.
 
-![](ultrasonicMount.JPG)
+![](SoftwareUML.png)
 ##  Step 6: Software
 The program follows a pretty simple but tedious format in which in main() after a large instantiation of objects there is a constant displayTime() and checkAlarm(). Both of these have conditionals that would activate the alarm routine in which a grid matrix with a predefined resolution is created and populated with ultrasonic values at each x and y value essentially "mapping" out the entire area with distance values. If we follow the assumption that the sleeper is the closest to the sensor (and does not have the fluffiest pillow known to man) then the routine of finding the lowest value and sending the pipe to that x,y coordinate works perfectly! As also shown through the demo.
 
