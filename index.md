@@ -105,6 +105,229 @@ The pump, ultrasonic sensor, water tank (old candle case), and relay board were 
 ##  Step 6: Software
 The program follows a pretty simple but tedious format in which in main() after a large instantiation of objects there is a constant displayTime() and checkAlarm(). Both of these have conditionals that would activate the alarm routine in which a grid matrix with a predefined resolution is created and populated with ultrasonic values at each x and y value essentially "mapping" out the entire area with distance values. If we follow the assumption that the sleeper is the closest to the sensor (and does not have the fluffiest pillow known to man) then the routine of finding the lowest value and sending the pipe to that x,y coordinate works perfectly! As also shown through the demo.
 
+```
+#include "mbed.h"
+#include "rtos.h"
+#include "wave_player.h"
+#include "uLCD_4DGL.h"
+#include "ultrasonic.h"
+#include "Matrix.h"
+#include "PinDetect.h"
+#include "Servo.h"
+
+//Variables
+int alarmHour = 10;  // Default alarm time: 07:00 AM
+int alarmMinute = 39;
+int resolution = 10;
+int minDistance = 10000; // Initialize with maximum possible value
+int minX = 0;
+int minY = 0;    
+//servoStepSize needs 7s to go across whole x axis rail
+float XservoStepSize = 6.5/resolution;
+float YservoStepSize = 7.0/resolution;
+// Temp Distance Storage for Ultrasonic
+int currDistance = 0;
+// Status to activate the locate and wake up routine
+bool status = false;
+//Pushbutton Declarations
+PinDetect pb1(p23); 
+PinDetect pb2(p24);
+PinDetect pb3(p25);
+
+//Definiton for the x and y servos, ultrasonic sensor, and matrix grid
+Servo xServo(p21);
+Servo yServo(p22);
+Matrix m1(resolution, resolution);
+uLCD_4DGL uLCD(p28, p27, p29); // TX, RX, RESET
+// Relay Extra for appropriate usage
+DigitalOut relay(p26, 1); 
+Mutex lcd_mutex;
+
+void dist(int distance) {
+    currDistance = distance;
+}
+
+ultrasonic eyes(p6, p7, .1, 1, &dist);
+
+void pb1_hit_callback (void) {
+    // Increment alarm minute
+    alarmMinute = (alarmMinute + 1) % 60;
+}
+
+void pb2_hit_callback (void) {
+    // Increment alarm Hour
+    alarmHour = (alarmHour + 1) % 24;
+}
+
+void pb3_hit_callback (void) {
+    // Activate and Deactivate Alarm
+    status = !status;
+}
+
+void findFace() {
+    // Servo movement of x and y direction that calculates all ultrasonic values
+    for (int y = 1; y < resolution; y++) {
+        for (int x = 1; x < resolution; x++) {
+
+            // Move x-axis forward for duration XservoStepSize then stop
+            xServo.write(0.2);
+            wait(XservoStepSize);
+            xServo.write(0.5);
+            wait(0.2);
+
+            // Pings in and out the Ultrasonic to update currDistance Value
+            eyes.checkDistance();
+            m1.add(x, y, currDistance);
+
+            // Display Ultrasonic Distance
+            lcd_mutex.lock();
+            uLCD.text_width(1); // Set text width
+            uLCD.text_height(1); // Set text height
+            uLCD.locate(0,14);
+            uLCD.printf("Dist: %d cm  ", currDistance);
+            lcd_mutex.unlock();
+            wait(0.2);
+
+        }
+
+        // Move xServo back to starting position
+        xServo.write(0.8);
+        wait(XservoStepSize * resolution);
+        xServo.write(0.5);
+        wait(0.2);
+
+        // Move yServo over one matrix tick
+        yServo.write(0.2);
+        wait(YservoStepSize);
+        yServo.write(0.5);
+        wait(0.2);
+
+    }
+    yServo.write(0.8);
+    wait(YservoStepSize*resolution);
+    yServo.write(0.5);
+    wait(1);
+}
+
+void wakeUp() {
+
+    // Iterate through the matrix to find the minimum distance
+    for (int y = 1; y < resolution; y++) {
+        for (int x = 1; x < resolution; x++) {
+            int distanceM = m1.getNumber(x, y);
+            if (distanceM < minDistance) {
+                minDistance = distanceM;
+                minX = x;
+                minY = y;
+            }
+        }
+    }
+
+    xServo.write(0.2);
+    wait(XservoStepSize*minX);
+    xServo.write(0.5);
+    wait(0.2);
+
+    yServo.write(0.2);
+    wait(YservoStepSize*minY - YservoStepSize);
+    yServo.write(0.5);
+    wait(3);
+
+    relay = !relay;
+    wait(10);
+    relay = !relay;
+    wait(0.5);
+
+    xServo.write(0.8);
+    wait(XservoStepSize*minX - YservoStepSize);
+    xServo.write(0.5);
+    wait(0.2);
+
+    yServo.write(0.8);
+    wait(YservoStepSize*minY - YservoStepSize);
+    yServo.write(0.5);
+    wait(0.2);
+}
+
+void displayTime() {
+    lcd_mutex.lock();
+    time_t currentTime = time(NULL);
+    struct tm *localTime = localtime(&currentTime);
+
+    // Set font size for current time
+    uLCD.text_width(2); // Double the text width
+    uLCD.text_height(2); // Double the text height
+    // Display current time
+    uLCD.color(BLUE);
+    uLCD.locate(0,0);
+    uLCD.printf("%02d:%02d:%02d\n", localTime->tm_hour, localTime->tm_min, localTime->tm_sec);
+
+    // Display "Alarm" text larger and centered
+    uLCD.text_width(2); // Set text width
+    uLCD.text_height(2); // Set text height
+    uLCD.color(WHITE);
+    const char* alarmText = "Alarm";
+    uLCD.locate(0, 3); // Adjust vertical position
+    uLCD.printf("%s ", alarmText); // Space added after "Alarm"
+
+    // Display alarm status next to "Alarm"
+    if (status) {
+        uLCD.color(GREEN);
+        uLCD.printf("ON_");
+    } else {
+        uLCD.color(RED);
+        uLCD.printf("OFF");
+    }
+
+    // Display alarm time
+    uLCD.color(WHITE); // Reset color to white
+    uLCD.locate(0,5); // Adjust vertical position for alarm time
+    uLCD.printf("%02d:%02d\n", alarmHour, alarmMinute);
+
+    lcd_mutex.unlock();
+    wait(0.2); // Update interval
+}
+
+void checkAlarm() {
+    time_t currentTime = time(NULL);
+    struct tm *localTime = localtime(&currentTime);
+
+    if (localTime->tm_hour == alarmHour && localTime->tm_min == alarmMinute && status == true) {
+        // Trigger alarm routine
+        findFace();
+        wait(0.5);
+        wakeUp();
+        wait(0.5);
+        //m1.Clear();
+        //wait(0.5);
+    }
+}
+
+int main() {
+    set_time(1661510400);
+
+    pb1.mode(PullDown);
+    pb2.mode(PullDown);
+    pb3.mode(PullDown);
+    //Wait for mode assertion to take place
+    wait(.01);
+    // Setup Interrupt callback functions for a pb hit
+    pb1.attach_deasserted(&pb1_hit_callback);
+    pb2.attach_deasserted(&pb2_hit_callback);
+    pb3.attach_deasserted(&pb3_hit_callback);
+    // Start sampling pb inputs using interrupts
+    pb1.setSampleFrequency();
+    pb2.setSampleFrequency();
+    pb3.setSampleFrequency();
+
+    while (1) {
+        eyes.startUpdates();
+        displayTime();
+        checkAlarm();
+    }
+}
+```
+
 [Watch our project demo](https://www.youtube.com/watch?v=fC7QabEXuDo).
 
 ## Conclusion and Future Work
