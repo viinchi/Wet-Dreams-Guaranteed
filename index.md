@@ -12,7 +12,7 @@ Experience an innovative wake-up solution designed to ensure you start your day 
 
 Our unique system combines state-of-the-art ultrasonic sensors and a pressurized water mechanism to locate and wake you effectively. 
 
-![Project Assembly](/path-to-image/Assembly.png)
+![Project Assembly](fullProject.jpg)
 
 
 
