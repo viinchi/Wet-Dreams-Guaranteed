@@ -88,9 +88,17 @@ From there we mounted the voltage reduction circuit to power the entire project 
 The LCD was mounted using velcro tape in order to troubleshoot more readily around the frame. Along with the pushbuttons being placed on the same panel. These pushbuttons use the mBed's 3.3 volt output to configure logic active high which was set internally in the program.
 Following the schematic the servos, ultrasonic, and LCD can be wired using appropriate extensions whenever needed.
 
-![](Assembly.JPG)
+![](Assembly.png)
 ##  Step 3: Linear Rail System
-For moving in the X and Y axis direction we decided to model and 3D print a linear rail system using our own carriage design. This deisgn utilizes two servos that would mount directly to the carriage and allow the utlrasonic sensor to move freely along a grid that will be configured within the software.
+For moving in the X and Y axis direction we decided to model and 3D print a linear rail system using our own carriage design. This design utilizes two servos that would mount directly to the carriage and allow the utlrasonic sensor to move freely along a grid that will be configured within the software. 
+![](gearRail3dprint.JPG)
+SUPER IMPORTANT: Use a high quality printer when printing these parts as we ran into a LOT of clearance issues that required a large amount of grinding, cutting, and filing to even move the Y-axis linear rail that fits into the T-slot. Be wary of this or even take a simpler route with using extruded aluminum with T-slot bolts.
+
+![](carriage2.JPG)
+##  Step 4: Attaching all 3D parts together
+When placing the rails and carriages a lot of holes need to be drilled into the frame. We used a 5.5mm drill bit and 5mm bolts to piece everything together while using 3 inch long #10-32 to hold the carriage together. The servos were mounted to the carriages afterwards. IMPORTANT: Tighten the servos only with the driving gears compressed onto the teeth to allow for smooth operation when moving the linear rails in X and Y direction.
+It should be noted that the acrylic mount that is shown in the figure is due to the entire top piece of our carriage snapping off. We were able to get around this by laser cutting a new servo mount panel and directly bolting it into the excess extrusion that did not snap off. Also to note is the T-rail is completely mauled. That is because of the terrible printing quality on the linear rails and the T-slot itself. We abandoned the design and decided to just use the pressure from the drive gear to hold the linear rail down which made it quite wobbly, but functional.
+
 
 ## Conclusion and Future Work
 
